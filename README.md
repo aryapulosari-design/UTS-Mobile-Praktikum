@@ -321,7 +321,8 @@ Pemeriksaan mengacu pada naskah asli **UJIAN TENGAH SEMESTER (UTS), Pemrograman 
 | Pengujian sistematis | 34 tes serta panduan pemeriksaan manual |
 | README | Identitas, fitur, API, teknologi, cara menjalankan, pengujian |
 | Laporan PDF | `docs/Laporan_UTS_LangitKita.pdf`, cover perlu dilengkapi |
-| GitHub Public dan Drive Viewer | Belum diunggah; perlu akun dan tujuan publikasi |
+| GitHub Public | Sudah diunggah ke [UTS-Mobile-Praktikum](https://github.com/aryapulosari-design/UTS-Mobile-Praktikum); README publik terverifikasi HTTP 200 tanpa login |
+| Google Drive Viewer | Laporan belum diunggah ke Google Drive |
 
 ## Sebelum pengumpulan
 
@@ -333,7 +334,8 @@ Pemeriksaan mengacu pada naskah asli **UJIAN TENGAH SEMESTER (UTS), Pemrograman 
 - [x] Build APK Android release dan web; simpan screenshot serta laporan PDF.
 - [ ] Lengkapi nama perguruan tinggi dan logo fakultas pada cover, lalu ekspor ulang PDF.
 - [ ] Uji APK pada perangkat/emulator Android dan catat hasilnya.
-- [ ] Unggah source code versi akhir ke repositori GitHub **Public**.
+- [x] Unggah source code versi akhir ke repositori GitHub **Public**: [UTS-Mobile-Praktikum](https://github.com/aryapulosari-design/UTS-Mobile-Praktikum).
+- [x] Verifikasi README GitHub dapat dibaca tanpa login (HTTP 200).
 - [ ] Unggah laporan PDF final ke Google Drive dengan akses **Anyone with the link — Viewer**.
 - [ ] Uji kedua tautan melalui Incognito tanpa login.
 - [ ] Kumpulkan kedua tautan sebelum **26 Oktober 2026 pukul 23.59 WIB**.

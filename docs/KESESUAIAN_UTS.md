@@ -2,7 +2,7 @@
 
 Acuan: UJIAN TENGAH SEMESTER (UTS), Matakuliah Pemrograman Mobile, Senin 19 Oktober 2026, Praktikum Mobile Programming G. Batas pengumpulan: 26 Oktober 2026, 23.59 WIB.
 
-**Status:** implementasi teknis dan dokumentasi pengembangan telah disiapkan. Pengumpulan belum lengkap sampai cover serta kedua tautan publik diselesaikan. Nilai akhir tetap merupakan penilaian dosen.
+**Status:** implementasi teknis, dokumentasi, dan repositori GitHub Public telah disiapkan. Pengumpulan belum lengkap sampai cover dan tautan Google Drive diselesaikan. Nilai akhir tetap merupakan penilaian dosen.
 
 | Ketentuan soal | Bukti di proyek | Status |
 | --- | --- | --- |
@@ -19,7 +19,7 @@ Acuan: UJIAN TENGAH SEMESTER (UTS), Matakuliah Pemrograman Mobile, Senin 19 Okto
 | Loading, success, error | `StatusPanel`, data cuaca, pesan dan tombol coba lagi | Terpenuhi |
 | B.2 Source lengkap dan struktur rapi | Folder platform Flutter, model, services, screens, widgets, utils, test, docs; `pubspec.lock` | Siap diunggah |
 | B.2 README wajib | Nama, deskripsi, fitur, teknologi/package dan langkah menjalankan ada di `README.md` | Terpenuhi |
-| B.2 GitHub Public dan link | Belum ada repositori publik yang ditentukan/diunggah dalam sesi ini | Belum selesai |
+| B.2 GitHub Public dan link | [aryapulosari-design/UTS-Mobile-Praktikum](https://github.com/aryapulosari-design/UTS-Mobile-Praktikum), branch main | Selesai; README publik HTTP 200 tanpa login |
 | B.3 Cover | Judul, matakuliah, nama/NIM, jurusan dan tahun terisi; kampus serta logo fakultas belum tersedia | Perlu dilengkapi |
 | BAB I 1.1–1.2 | Latar belakang, tujuan, sasaran, gambaran aplikasi, fitur dan manfaat | Tersedia |
 | BAB II 2.1 | Persiapan proyek, struktur, package serta fungsi/alasan pemakaian | Tersedia |
@@ -29,7 +29,7 @@ Acuan: UJIAN TENGAH SEMESTER (UTS), Matakuliah Pemrograman Mobile, Senin 19 Okto
 | Daftar pustaka | Dokumentasi Flutter, Dart, HTTP, Shared Preferences dan API | Tersedia |
 | B.4 Laporan PDF | `docs/Laporan_UTS_LangitKita.pdf`, sumber edit `docs/laporan.html` | Tersedia; cover perlu dilengkapi |
 | B.4 Google Drive Anyone with the link, Viewer | Belum diunggah ke Drive | Belum selesai |
-| B.5 Dua tautan tanpa login | GitHub dan Drive belum tersedia untuk diuji Incognito | Belum selesai |
+| B.5 Dua tautan tanpa login | GitHub sudah terverifikasi publik tanpa login; tautan Drive belum tersedia | Perlu menyelesaikan Drive dan pemeriksaan akhir kedua tautan |
 
 ## Penjelasan API
 
@@ -49,6 +49,6 @@ Naskah asli menyebut “URL yang telah disediakan”, tetapi teks lampiran tidak
 
 1. Lengkapi nama perguruan tinggi dan logo fakultas pada cover; ekspor ulang PDF.
 2. Uji pemasangan dan fungsi APK di perangkat/emulator Android, lalu catat hasil aktual.
-3. Unggah proyek akhir ke GitHub Public dan pastikan sesuai laporan.
+3. Pertahankan proyek akhir di [GitHub Public](https://github.com/aryapulosari-design/UTS-Mobile-Praktikum) dan unggah perubahan lanjutan jika ada.
 4. Unggah PDF final ke Google Drive sebagai Anyone with the link — Viewer.
 5. Uji kedua tautan melalui Incognito tanpa login dan kumpulkan sebelum tenggat.
