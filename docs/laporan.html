@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Laporan UTS LangitKita — Arya Kharisudin Irfani</title>
+<style>
+@page { size: A4; margin: 20mm 19mm; }
+* { box-sizing: border-box; }
+body { font: 11pt/1.65 Georgia, 'Times New Roman', serif; color: #172f2a; max-width: 820px; margin: auto; background: white; }
+h1,h2,h3 { font-family: Arial,sans-serif; line-height: 1.35; }
+h1 { font-size: 19pt; margin: 0 0 22px; text-align: center; }
+h2 { font-size: 14pt; margin: 28px 0 12px; }
+h3 { font-size: 12pt; }
+p { text-align: justify; margin: 10px 0; }
+a { color: #235c4d; overflow-wrap: anywhere; }
+table { width: 100%; border-collapse: collapse; font-size: 9.5pt; margin: 16px 0; }
+td,th { border: 1px solid #bdcec4; text-align: left; vertical-align: top; padding: 7px 9px; }
+th { background: #e7eee7; }
+pre { font: 8.3pt/1.5 Consolas, monospace; background: #f1f4ee; padding: 14px; border: 1px solid #dce5d9; white-space: pre-wrap; overflow-wrap: anywhere; }
+code { font-family: Consolas,monospace; font-size: 0.9em; }
+section { break-before: page; }
+.cover { min-height: 245mm; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: space-around; }
+.cover h1 { font-size: 22pt; }
+.cover p { text-align: center; }
+.logo { border: 1px dashed #90a79a; width: 145px; height: 145px; display: grid; place-content: center; font: 10pt/1.5 Arial,sans-serif; color: #56695d; }
+.note { padding: 12px 16px; background: #fff5dd; border-left: 3px solid #b68b35; font-size: 10pt; }
+.figure-grid { display: flex; gap: 20px; align-items: start; justify-content: center; margin: 20px 0; }
+figure { margin: 10px 0 22px; text-align: center; break-inside: avoid; flex: 1; }
+figure img { max-width: 100%; width: 230px; border: 1px solid #c5d3c7; border-radius: 9px; }
+figcaption { font-size: 9pt; line-height: 1.5; text-align: center; margin-top: 8px; }
+.wide img { width: 250px; }
+.toc p { text-align: left; }
+tr,pre { break-inside: avoid; }
+@media screen { body { padding: 35px; } section { margin-top: 60px; } }
+</style>
+</head>
+<body>
+<div class="cover">
+  <div><h1>LAPORAN PROYEK UTS<br>LANGITKITA</h1><p>Aplikasi Mobile Berbasis API<br>Mata Kuliah Pemrograman Mobile<br>Praktikum Mobile Programming G</p></div>
+  <div class="logo">Logo fakultas<br><small>Lengkapi sebelum pengumpulan</small></div>
+  <div><p>Disusun oleh:</p><p><strong>Arya Kharisudin Irfani</strong><br>NIM 240605110227</p></div>
+  <div><p><strong>PROGRAM STUDI TEKNIK INFORMATIKA</strong><br>[NAMA PERGURUAN TINGGI]<br>2026</p></div>
+</div>
+
+<section class="toc">
+<h1>DAFTAR ISI</h1>
+<p>Cover</p><p>BAB I PENDAHULUAN<br>1.1 Latar Belakang dan Gambaran Aplikasi<br>1.2 Fitur Aplikasi</p>
+<p>BAB II PEMBAHASAN<br>2.1 Persiapan Project dan Package<br>2.2 Desain Antarmuka Pengguna<br>2.3 Implementasi Pengambilan dan Pengolahan Data API<br>2.4 Pengujian Aplikasi</p>
+<p>BAB III PENUTUP<br>3.1 Kesimpulan<br>3.2 Saran</p><p>DAFTAR PUSTAKA</p>
+<p class="note">Status dokumen: laporan pengembangan dengan bukti pengujian lokal. Nama perguruan tinggi dan logo fakultas pada cover perlu dilengkapi. Publikasi GitHub dan unggahan Google Drive belum dilakukan. Screenshot menggunakan Flutter web berukuran layar ponsel; bukan bukti pengujian pada perangkat Android fisik.</p>
+</section>
+
+<section>
+<h1>BAB I<br>PENDAHULUAN</h1>
+<h2>1.1 Latar Belakang dan Gambaran Aplikasi</h2>
+<p>Informasi cuaca membantu masyarakat merencanakan kegiatan di luar ruangan, seperti perjalanan, perkuliahan, dan aktivitas sehari-hari. Data yang hanya menampilkan satu kondisi tanpa konteks waktu, lokasi, atau prakiraan beberapa hari dapat menyulitkan pengguna mengambil keputusan. Oleh karena itu, dikembangkan LangitKita, aplikasi mobile yang menyajikan kondisi cuaca dan prakiraan dalam antarmuka yang ringkas dan mudah dipahami.</p>
+<p>LangitKita dibangun menggunakan Flutter dan Dart. Aplikasi mengambil data dinamis dari Open-Meteo melalui HTTP, memvalidasi respons server, mengonversi JSON menjadi objek model, dan menampilkan hasil melalui FutureBuilder. Pengguna dapat memilih kota yang tersedia atau mencari wilayah lain di Indonesia. Sasaran pengguna adalah mahasiswa dan masyarakat yang membutuhkan gambaran cuaca untuk kegiatan harian.</p>
+<p>Tujuan pengembangan adalah menerapkan komunikasi API, asynchronous programming, pengelolaan status antarmuka, pemisahan struktur kode, serta pengujian yang sistematis sesuai ketentuan UTS. Teks soal tidak mencantumkan URL API tertentu dan pengguna mengonfirmasi tidak ada URL khusus, sehingga Open-Meteo dipilih sebagai sumber data. Jika kemudian terdapat ketetapan API dari dosen, sumber data perlu disesuaikan.</p>
+<h2>1.2 Fitur Aplikasi</h2>
+<table><tr><th>Fitur</th><th>Fungsi dan manfaat</th></tr>
+<tr><td>Cuaca saat ini</td><td>Menampilkan kota, region, suhu, kondisi cuaca, ikon, dan waktu data dalam zona lokasi.</td></tr>
+<tr><td>Detail cuaca</td><td>Menyajikan suhu terasa, kelembapan, kecepatan angin, dan peluang hujan maksimum harian.</td></tr>
+<tr><td>Prakiraan tujuh hari</td><td>Membantu perencanaan melalui informasi kondisi cuaca serta suhu maksimum dan minimum tiap hari.</td></tr>
+<tr><td>Prakiraan per jam</td><td>Menampilkan 24 jam mulai jam berjalan, dengan suhu, peluang hujan, tanggal, dan ikon siang/malam.</td></tr>
+<tr><td>Detail prakiraan harian</td><td>Ketuk salah satu hari untuk melihat UV maksimum, total curah hujan, angin maksimum, serta waktu matahari terbit dan terbenam.</td></tr>
+<tr><td>Kota favorit</td><td>Menyimpan pilihan kota secara lokal agar dapat dipilih kembali setelah aplikasi ditutup. Data cuaca tetap diambil dari API.</td></tr>
+<tr><td>Pilihan dan pencarian kota</td><td>Delapan kota cepat: Jakarta, Bandung, Yogyakarta, Surabaya, Malang, Kediri, Denpasar, dan Makassar. Pilihan Jawa Timur mencakup Surabaya, Malang, serta Kediri. Daftar dapat digeser ke samping. Kota lain dapat dicari berdasarkan nama dan koordinat hasil API.</td></tr>
+<tr><td>Refresh dan coba ulang</td><td>Memperbarui informasi melalui tombol atau tarik layar, serta memulihkan tampilan setelah request gagal.</td></tr>
+<tr><td>Status antarmuka</td><td>Memberikan informasi loading, berhasil, hasil kosong, atau error agar pengguna memahami keadaan aplikasi.</td></tr>
+</table>
+</section>
+
+<section>
+<h1>BAB II<br>PEMBAHASAN</h1>
+<h2>2.1 Persiapan Project dan Package</h2>
+<p>Struktur dasar project Flutter dapat dibuat dengan perintah <code>flutter create --project-name langit_kita langit_kita</code>, yang menyediakan folder lib, test, dan runner platform. Dalam pengerjaan ini project Flutter yang sudah tersedia digunakan sebagai dasar dan disesuaikan; project tidak dibuat ulang pada folder yang berisi pekerjaan pengguna.</p>
+<p>Package shared_preferences versi 2.5.6 ditambahkan untuk menyimpan pilihan kota favorit. API SharedPreferencesAsync digunakan agar operasi baca/tulis mengikuti penyimpanan platform secara asinkron. Pemilihannya sesuai kebutuhan preferensi sederhana; data cuaca tetap dimuat melalui HTTP.</p>
+<p>Pengembangan dilakukan pada folder <code>uts mobile praktikum</code>, yang sebelumnya berisi demonstrasi GridView. Proyek diperbarui menjadi paket <code>langit_kita</code> dan aplikasi LangitKita. Kode utama, pengujian bawaan, judul antarmuka, identitas platform, serta lokasi berkas Kotlin disesuaikan. Flutter yang digunakan adalah versi 3.47.2 dengan Dart 3.13.2.</p>
+<pre>flutter pub get
+flutter devices
+flutter run -d chrome
+
+# Jika perangkat Android sudah terhubung:
+flutter run -d ID_PERANGKAT_ANDROID</pre>
+<p>Perintah dijalankan dari direktori proyek. Package <code>http</code> digunakan karena mendukung HTTP lintas platform dan menyediakan MockClient untuk pengujian. Material 3 digunakan untuk tema, formulir, tombol, dan navigasi. Font <code>cupertino_icons</code> disertakan untuk komponen adaptif Flutter. Parsing JSON menggunakan <code>dart:convert</code>; pengujian memakai <code>flutter_test</code>; kualitas kode diperiksa melalui <code>flutter_lints</code>.</p>
+<table><tr><th>Bagian proyek</th><th>Tanggung jawab</th></tr>
+<tr><td>lib/main.dart dan lib/app.dart</td><td>Entry point, MaterialApp, tema dan pengaturan halaman awal.</td></tr>
+<tr><td>lib/models/</td><td>Model City, Weather, DailyForecast, HourlyForecast dan validasi data.</td></tr>
+<tr><td>lib/services/</td><td>HTTP GET, timeout, status respons, parsing dan pesan kegagalan.</td></tr>
+<tr><td>lib/screens/</td><td>Beranda, FutureBuilder, pergantian kota, pencarian lokasi, dan detail harian.</td></tr>
+<tr><td>lib/widgets/ dan lib/utils/</td><td>Komponen tampilan yang digunakan ulang, label WMO dan format waktu.</td></tr>
+<tr><td>test/</td><td>Pengujian model, layanan API, dan interaksi widget.</td></tr>
+<tr><td>docs/ dan tools/</td><td>Laporan, screenshot, server preview serta pembuatan PDF.</td></tr>
+</table>
+<p>Android diberi izin <code>android.permission.INTERNET</code> dalam manifest utama agar koneksi tersedia pada build release. macOS menggunakan entitlement <code>com.apple.security.network.client</code>. Komunikasi dilakukan melalui HTTPS. Aplikasi tidak memerlukan API key maupun izin lokasi perangkat karena kota dipilih pengguna.</p>
+
+<h2>2.2 Desain Antarmuka Pengguna</h2>
+<p>Fitur tambahan memanfaatkan atribut API yang telah diperiksa. Kartu prakiraan per jam dapat digeser horizontal. Daftar tujuh hari dapat diketuk untuk membuka halaman detail. Tombol favorit menyimpan atau menghapus kota; daftar favorit muncul saat berisi pilihan.</p>
+<p>Antarmuka menggunakan latar terang, aksen hijau, dan kartu dengan sudut membulat. Informasi utama berupa nama kota dan suhu ditempatkan pada kartu utama. Detail cuaca disajikan dalam kartu metrik, sedangkan prakiraan harian berbentuk daftar agar mudah dibandingkan. Konten dibatasi lebarnya pada layar besar dan dapat digulir pada layar ponsel. Tombol pencarian dan pilihan kota berada di atas kartu cuaca.</p>
+<p>Halaman pencarian terdiri atas kolom nama kota, validasi minimal tiga karakter, tombol Cari lokasi, dan daftar hasil. Pemilihan hasil mengembalikan objek City ke beranda. Komponen StatusPanel menampilkan keadaan loading, hasil kosong, dan error dengan gaya yang konsisten.</p>
+</section>
+
+<section>
+<h2>2.2.1 Bukti Tampilan Aplikasi</h2>
+<p>Gambar berikut diambil dari Flutter web yang dijalankan pada Chrome dengan viewport 430 × 932 piksel. Tampilan sukses memakai API asli. Kondisi loading dan error dibuat melalui intersepsi jaringan browser untuk menguji respons antarmuka.</p>
+<div class="figure-grid">
+<figure><img src="screenshots/01-loading.png" alt="Tampilan loading"><figcaption><strong>Gambar 1. Status loading.</strong><br>Indikator muncul selama Future menunggu data cuaca.</figcaption></figure>
+<figure><img src="screenshots/02-cuaca-jakarta.png" alt="Cuaca Jakarta"><figcaption><strong>Gambar 2. Beranda cuaca Jakarta.</strong><br>Kartu utama menyajikan data API asli, waktu data, dan lokasi.</figcaption></figure>
+</div>
+</section>
+
+<section>
+<div class="figure-grid">
+<figure><img src="screenshots/03-prakiraan.png" alt="Daftar prakiraan"><figcaption><strong>Gambar 3. Prakiraan harian.</strong><br>Pengguna dapat menggulir halaman untuk membaca prakiraan tujuh hari.</figcaption></figure>
+<figure><img src="screenshots/04-pencarian.png" alt="Halaman pencarian"><figcaption><strong>Gambar 4. Pencarian kota.</strong><br>Form menerima nama kota atau wilayah di Indonesia.</figcaption></figure>
+</div>
+<p>Pada daftar prakiraan, angka persentase di bawah ikon menunjukkan peluang hujan maksimum harian. Suhu ditulis dalam Celsius; kecepatan angin dalam km/jam. Waktu data mengikuti zona lokasi dari API dan tidak dikonversi ke zona perangkat.</p>
+</section>
+
+<section>
+<figure class="wide"><img src="screenshots/05-error.png" alt="Tampilan error"><figcaption><strong>Gambar 5. Error koneksi dan tombol coba lagi.</strong><br>Aplikasi menjelaskan kegagalan tanpa menutup halaman dan menyediakan jalur pemulihan.</figcaption></figure>
+<p>Kondisi error tidak digantikan dengan nilai cuaca palsu. Pesan yang ditampilkan membedakan koneksi terputus, timeout, kegagalan HTTP, batas permintaan, serta data yang tidak dapat diproses.</p>
+</section>
+
+<section>
+<h2>2.2.2 Tampilan Fitur Tambahan</h2>
+<p>Gambar tambahan untuk fitur yang dikembangkan ditampilkan berikut. Seluruh gambar berasal dari aplikasi yang dijalankan, dengan data cuaca asli dan profil browser pengujian tersendiri.</p>
+<div class="figure-grid">
+<figure><img src="screenshots/06-favorit.png" alt="Kota favorit tersimpan"><figcaption><strong>Gambar 6. Kota favorit.</strong><br>Pilihan kota disimpan dan terbaca kembali setelah reload.</figcaption></figure>
+<figure><img src="screenshots/07-per-jam.png" alt="Prakiraan per jam"><figcaption><strong>Gambar 7. Prakiraan per jam.</strong><br>Kartu menampilkan tanggal/jam, suhu, kondisi, dan peluang hujan untuk 24 jam.</figcaption></figure>
+</div>
+<figure><img src="screenshots/08-detail-harian.png" alt="Detail prakiraan harian"><figcaption><strong>Gambar 8. Detail prakiraan harian.</strong><br>Halaman dapat digulir untuk melihat UV, curah hujan, angin, serta waktu matahari terbit/terbenam.</figcaption></figure>
+</section>
+<section>
+<h2>2.3 Implementasi Pengambilan dan Pengolahan Data API</h2>
+<h3>2.3.1 Pemilihan dan Pemeriksaan API</h3>
+<p>Open-Meteo dipilih karena menyediakan data cuaca dalam JSON, koordinat lintas lokasi, dokumentasi atribut yang jelas, dan akses nonkomersial tanpa API key. Sebelum implementasi, endpoint cuaca diperiksa langsung pada 19 Oktober 2026 dan mengembalikan HTTP 200. Respons memuat objek current, daily, timezone, serta metadata unit. Endpoint pencarian Bandung juga diperiksa dan mengembalikan nama, region, serta koordinat lokasi.</p>
+<pre>GET https://api.open-meteo.com/v1/forecast
+latitude=-6.2
+longitude=106.8167
+current=temperature_2m,relative_humidity_2m,
+        apparent_temperature,is_day,weather_code,wind_speed_10m
+daily=weather_code,temperature_2m_max,
+      temperature_2m_min,precipitation_probability_max,
+      sunrise,sunset,uv_index_max,precipitation_sum,wind_speed_10m_max
+hourly=temperature_2m,precipitation_probability,weather_code,is_day
+forecast_hours=24
+timezone=auto
+temperature_unit=celsius
+wind_speed_unit=kmh
+forecast_days=7
+
+GET https://geocoding-api.open-meteo.com/v1/search
+name=Bandung&amp;count=10&amp;language=id&amp;format=json&amp;countryCode=ID</pre>
+<p>Atribut dipilih sesuai kebutuhan antarmuka. Suhu, kelembapan, angin, kode cuaca, dan prakiraan ditampilkan karena membantu pengguna merencanakan aktivitas. Metadata seperti waktu pemrosesan server dan elevasi tidak ditampilkan. Array prakiraan dipasangkan berdasarkan indeks yang sama.</p>
+<pre>{
+  "timezone": "Asia/Jakarta",
+  "current": {
+    "time": "2026-10-19T09:15",
+    "temperature_2m": 31.5,
+    "relative_humidity_2m": 59,
+    "apparent_temperature": 37.5,
+    "is_day": 1, "weather_code": 3, "wind_speed_10m": 0.9
+  },
+  "daily": {
+    "time": ["2026-10-19", "2026-10-20"],
+    "weather_code": [53, 51],
+    "temperature_2m_max": [35.3, 34.9],
+    "temperature_2m_min": [25.9, 26.5],
+    "precipitation_probability_max": [59, 61]
+  }
+}</pre>
+<p>Contoh JSON hanya menunjukkan sebagian atribut current/daily dan dipersingkat menjadi dua hari. Respons lengkap juga mengandung hourly untuk 24 jam serta sunrise, sunset, uv_index_max, precipitation_sum, dan wind_speed_10m_max pada daily. Endpoint lengkap telah diperiksa dengan lokasi Malang dan mengembalikan 24 data per jam serta tujuh hari. Data contoh tidak digunakan sebagai data operasional.</p>
+</section>
+
+<section>
+<h3>2.3.2 HTTP Request dan Validasi Respons</h3>
+<p>WeatherService membangun URI HTTPS dengan query parameter, lalu melakukan GET menggunakan HTTP client. Fungsi asinkron menghasilkan Future dan membatasi waktu tunggu menjadi 15 detik. Potongan kode berikut berasal dari inti metode pengambilan respons; pemeriksaan status diringkas agar fokus pada alurnya.</p>
+<pre>final response = await _client.get(uri).timeout(timeout);
+if (response.statusCode != 200) {
+  throw WeatherException(
+    'Layanan belum tersedia (HTTP ${response.statusCode}). Coba lagi.',
+  );
+}
+final decoded = jsonDecode(utf8.decode(response.bodyBytes));
+if (decoded is! Map&lt;String, dynamic&gt; || decoded['error'] == true) {
+  throw const FormatException('Respons API tidak valid.');
+}
+return decoded;</pre>
+<p>Implementasi lengkap memberi pesan khusus untuk HTTP 429. TimeoutException ditangani sebagai koneksi terlalu lama dan ClientException sebagai koneksi gagal. JSON yang rusak, struktur berubah, atau data model tidak lengkap diterjemahkan menjadi WeatherException dengan pesan yang dapat dibaca pengguna.</p>
+
+<h3>2.3.3 JSON Menjadi Objek Dart</h3>
+<p>Model Weather memuat waktu, zona waktu, suhu, kelembapan, angin, kode cuaca, serta daftar DailyForecast. City memuat nama, region, dan koordinat. Factory fromJson bertanggung jawab mengubah data mentah menjadi objek yang aman dipakai UI. Angka diterima sebagai num kemudian dikonversi ke double sehingga respons integer maupun desimal dapat diproses.</p>
+<pre>double _number(dynamic value) {
+  if (value is! num || !value.isFinite) {
+    throw const FormatException(
+      'Nilai cuaca tidak tersedia atau tidak valid.',
+    );
+  }
+  return value.toDouble();
+}
+
+// Di Weather.fromJson:
+temperature: _number(current['temperature_2m']),
+feelsLike: _number(current['apparent_temperature']),
+humidity: _number(current['relative_humidity_2m']).toInt(),</pre>
+<p>Seluruh array harian harus memiliki panjang sama dan tidak kosong. Tanggal diparsing menggunakan DateTime.tryParse. Jika salah satu nilai wajib tidak tersedia, model menolak respons dan UI menampilkan error, sehingga angka kosong tidak salah ditafsirkan sebagai nol.</p>
+</section>
+
+<section>
+<h3>2.3.4 Asynchronous Programming dan State UI</h3>
+<p>Future disimpan dalam state dan dibuat pada initState. Penggantian kota atau refresh membuat Future baru melalui setState. Penempatan ini mencegah request HTTP baru setiap kali build berjalan. Potongan berikut menunjukkan alur yang digunakan pada beranda.</p>
+<pre>@override
+void initState() {
+  super.initState();
+  _service = widget.service ?? WeatherService();
+  _weather = _service.fetchWeather(_city);
+}
+
+// Saat pengguna meminta data baru:
+setState(() {
+  if (city != null) _city = city;
+  _weather = _service.fetchWeather(_city);
+});</pre>
+<p>FutureBuilder memantau Future tersebut. Saat ConnectionState belum done, aplikasi menampilkan loading. Jika snapshot.hasError bernilai true, pesan dan tombol coba lagi ditampilkan. Saat data tersedia dan lolos validasi, WeatherContent menyajikan kartu cuaca dan prakiraan. Beranda juga memiliki jalur penanganan data kosong. Skema kode berikut merangkum cabang utama, sedangkan implementasi lengkap terdapat dalam weather_screen.dart.</p>
+<pre>FutureBuilder&lt;Weather&gt;(
+  future: _weather,
+  builder: (context, snapshot) {
+    if (snapshot.connectionState != ConnectionState.done) {
+      return StatusPanel(/* loading */);
+    }
+    if (snapshot.hasError) {
+      return StatusPanel(/* pesan dan tombol coba lagi */);
+    }
+    // Periksa snapshot.data, lalu tampilkan WeatherContent.
+  },
+)</pre>
+<p>Pencarian menggunakan FutureBuilder terpisah untuk daftar City. Hasil kosong ditampilkan secara eksplisit. Navigator mengirim objek lokasi terpilih kembali ke beranda, kemudian koordinatnya dipakai untuk mengambil cuaca.</p>
+
+<h2>2.4 Pengujian Aplikasi</h2>
+<h3>Penyimpanan Kota Favorit</h3>
+<p>FavoritesStore menggunakan SharedPreferencesAsync dari package shared_preferences 2.5.6. Setiap kota disimpan sebagai JSON berisi nama, region, latitude, dan longitude dalam daftar string dengan kunci khusus aplikasi. Koordinat digunakan sebagai identitas untuk menghindari duplikasi. Entri rusak diabaikan per entri. Status berhasil menyimpan hanya ditampilkan setelah operasi selesai; kegagalan diberi pesan dan data sebelumnya dipertahankan.</p>
+<pre>await _prefs.setStringList(
+  key,
+  cities.map((city) =&gt; jsonEncode(city.toJson())).toList(),
+);
+final values = await _prefs.getStringList(key) ?? [];</pre>
+<p>Potongan merangkum proses penyimpanan dan pembacaan; implementasi lengkap juga melakukan deduplikasi. Data cuaca tetap diminta dari API, sehingga penyimpanan favorit tidak menjadikan aplikasi cuaca offline.</p>
+<p>Pengujian dilakukan menggunakan Flutter Test dengan MockClient. Pendekatan ini membuat skenario HTTP 429, HTTP 500, JSON rusak, offline, timeout, serta hasil pencarian kosong dapat direproduksi tanpa bergantung pada kondisi server. Pemeriksaan API asli dilakukan terpisah. Perintah yang digunakan:</p>
+<pre>flutter analyze
+flutter test --reporter expanded
+flutter build web --release</pre>
+</section>
+
+<section>
+<h3>2.4.1 Hasil Pengujian Otomatis</h3>
+<table><tr><th>No.</th><th>Kelompok / skenario</th><th>Hasil terverifikasi</th></tr>
+<tr><td>1</td><td>Analisis statis</td><td>Analisis akhir lulus tanpa masalah.</td></tr>
+<tr><td>2</td><td>Model dan helper: 7 tes</td><td>Lulus: parsing, tipe angka, data rusak, koordinat, serta label tanggal/WMO.</td></tr>
+<tr><td>3</td><td>Layanan API: 13 tes</td><td>Lulus: parameter request, HTTP gagal, JSON rusak, timeout, offline, pencarian.</td></tr>
+<tr><td>4</td><td>Widget: 10 tes</td><td>Lulus: loading/sukses/error, pilihan dan pencarian kota, layar 320 piksel, detail harian, gulir per jam, serta favorit simpan/pulih/hapus/gagal.</td></tr>
+<tr><td>5</td><td>Total tes</td><td>34 tes lulus pada 19 Oktober 2026.</td></tr>
+<tr><td>6</td><td>API asli</td><td>Forecast HTTP 200; Geocoding berhasil mengembalikan lokasi Bandung.</td></tr>
+<tr><td>7</td><td>Build web</td><td>Berhasil menghasilkan build/web.</td></tr>
+<tr><td>8</td><td>Build APK Android release</td><td>Berhasil menghasilkan build/app/outputs/flutter-apk/app-release.apk. Instalasi pada perangkat Android belum diuji.</td></tr>
+<tr><td>9</td><td>Penyimpanan favorit: 4 tes</td><td>Lulus: pemulihan antar-instance, entri rusak, deduplikasi, penghapusan, dan kegagalan penyimpanan. Browser juga memverifikasi favorit setelah reload.</td></tr>
+</table>
+<p>Pengujian awal menemukan overflow judul pada layar kecil dan tipe map fixture yang terlalu ketat untuk memasukkan nilai null. Judul diperbaiki memakai Flexible serta ellipsis, dan tipe fixture diperbaiki menjadi Map&lt;String, dynamic&gt;. Setelah perbaikan, seluruh 34 tes lulus. Fixture hanya digunakan dalam pengujian; data aplikasi tetap berasal dari API.</p>
+<h3>2.4.2 Panduan Uji pada Perangkat Android</h3>
+<table><tr><th>Skenario</th><th>Hasil yang diharapkan</th></tr>
+<tr><td>Buka aplikasi dengan internet</td><td>Loading berubah menjadi cuaca Jakarta dan prakiraan.</td></tr>
+<tr><td>Pilih kota cepat dan cari Malang</td><td>Cuaca mengikuti lokasi yang dipilih.</td></tr>
+<tr><td>Masukkan nama dua karakter</td><td>Form menampilkan pesan minimal tiga karakter.</td></tr>
+<tr><td>Putus koneksi lalu refresh</td><td>Pesan error dan tombol coba lagi muncul.</td></tr>
+<tr><td>Aktifkan koneksi lalu coba lagi</td><td>Data baru dimuat dan antarmuka kembali berhasil.</td></tr>
+<tr><td>Gulir prakiraan dan ubah orientasi</td><td>Konten tetap terbaca dan tidak terpotong.</td></tr>
+</table>
+<p>Belum terdapat perangkat Android terhubung saat pemeriksaan awal. Tabel ini adalah rencana pengujian lanjutan, bukan klaim hasil uji pada ponsel. Screenshot browser digunakan sebagai bukti UI sementara; pengujian instalasi APK perlu dilakukan sebelum pengumpulan.</p>
+</section>
+
+<section>
+<h1>BAB III<br>PENUTUP</h1>
+<h2>3.1 Kesimpulan</h2>
+<p>LangitKita telah diimplementasikan sebagai aplikasi Flutter yang mengambil data cuaca dinamis dari Open-Meteo. Data diterima melalui HTTP, diperiksa statusnya, diparsing menjadi model Dart, dan disajikan menggunakan FutureBuilder dengan kondisi loading, sukses, error, serta data kosong. Pemisahan model, layanan, halaman, dan widget membuat kode lebih mudah ditelusuri.</p>
+<p>Seluruh 34 tes otomatis lulus setelah perbaikan, dan build web serta APK Android release berhasil dihasilkan. Pemeriksaan endpoint asli menunjukkan API dapat memberikan data cuaca dan lokasi. Hasil tersebut menunjukkan fungsi inti bekerja pada lingkungan pengujian yang dijalankan. Pengujian Android fisik, kelengkapan identitas institusi pada cover, serta publikasi GitHub dan Google Drive tetap perlu diselesaikan sebelum tugas dikumpulkan.</p>
+<h2>3.2 Saran</h2>
+<p>Pengembangan berikutnya dapat menambahkan cache untuk menampilkan data terakhir saat offline dengan penanda waktu yang jelas, serta penggunaan lokasi perangkat berdasarkan persetujuan pengguna. Pengujian pada lebih banyak ukuran layar, perangkat Android, dan jaringan lambat juga diperlukan. Apabila aplikasi digunakan secara komersial, akses API perlu mengikuti layanan dan ketentuan komersial penyedia.</p>
+<p>Sebelum pengumpulan, nama perguruan tinggi dan logo fakultas perlu dilengkapi pada cover. Source code akhir harus tersedia pada repositori GitHub Public, sedangkan laporan PDF diunggah ke Google Drive dengan izin Anyone with the link sebagai Viewer. Kedua tautan perlu diuji tanpa login melalui jendela Incognito sebelum batas pengumpulan 26 Oktober 2026 pukul 23.59 WIB.</p>
+</section>
+
+<section>
+<h1>DAFTAR PUSTAKA</h1>
+<p>Flutter. Dokumentasi Flutter. <a href="https://docs.flutter.dev/">https://docs.flutter.dev/</a>. Diakses 19 Oktober 2026.</p>
+<p>Flutter. FutureBuilder class. <a href="https://api.flutter.dev/flutter/widgets/FutureBuilder-class.html">https://api.flutter.dev/flutter/widgets/FutureBuilder-class.html</a>.</p>
+<p>Dart. Asynchronous programming: futures, async, await. <a href="https://dart.dev/libraries/async/async-await">https://dart.dev/libraries/async/async-await</a>.</p>
+<p>Dart Team. Package http. <a href="https://pub.dev/packages/http">https://pub.dev/packages/http</a>. Diakses 19 Oktober 2026.</p>
+<p>Flutter. Package shared_preferences. <a href="https://pub.dev/packages/shared_preferences">https://pub.dev/packages/shared_preferences</a>. Diakses 19 Oktober 2026.</p>
+<p>Flutter. Testing Flutter apps. <a href="https://docs.flutter.dev/testing/overview">https://docs.flutter.dev/testing/overview</a>.</p>
+<p>Open-Meteo. Weather Forecast API. <a href="https://open-meteo.com/en/docs">https://open-meteo.com/en/docs</a>. Diakses 19 Oktober 2026.</p>
+<p>Open-Meteo. Geocoding API. <a href="https://open-meteo.com/en/docs/geocoding-api">https://open-meteo.com/en/docs/geocoding-api</a>. Diakses 19 Oktober 2026.</p>
+<p>GeoNames. Geographical database. <a href="https://www.geonames.org/">https://www.geonames.org/</a>.</p>
+<p>Creative Commons. Attribution 4.0 International. <a href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a>.</p>
+</section>
+</body>
+</html>

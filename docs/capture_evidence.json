@@ -1,0 +1,16 @@
+{
+  "capturedAt": "2026-10-19T05:28:40.002Z",
+  "source": "Flutter web, Chrome headless, viewport 430 x 932",
+  "screenshots": [
+    "01-loading.png",
+    "02-cuaca-jakarta.png",
+    "06-favorit.png",
+    "07-per-jam.png",
+    "03-prakiraan.png",
+    "08-detail-harian.png",
+    "04-pencarian.png",
+    "05-error.png"
+  ],
+  "forecastHttpStatus": 200,
+  "favoritesPersistedAfterReload": true
+}
