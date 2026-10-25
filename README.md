@@ -324,22 +324,6 @@ Pemeriksaan mengacu pada naskah asli **UJIAN TENGAH SEMESTER (UTS), Pemrograman 
 | GitHub Public | Sudah diunggah ke [UTS-Mobile-Praktikum](https://github.com/aryapulosari-design/UTS-Mobile-Praktikum); README publik terverifikasi HTTP 200 tanpa login |
 | Google Drive Viewer | Laporan belum diunggah ke Google Drive |
 
-## Sebelum pengumpulan
-
-- [x] Implementasi Flutter berbasis API, JSON model, dan FutureBuilder.
-- [x] Pisahkan struktur kode dan sesuaikan identitas proyek.
-- [x] Verifikasi respons API asli.
-- [x] Jalankan analisis dan seluruh tes otomatis.
-- [x] Tulis README dan sumber laporan.
-- [x] Build APK Android release dan web; simpan screenshot serta laporan PDF.
-- [ ] Lengkapi nama perguruan tinggi dan logo fakultas pada cover, lalu ekspor ulang PDF.
-- [ ] Uji APK pada perangkat/emulator Android dan catat hasilnya.
-- [x] Unggah source code versi akhir ke repositori GitHub **Public**: [UTS-Mobile-Praktikum](https://github.com/aryapulosari-design/UTS-Mobile-Praktikum).
-- [x] Verifikasi README GitHub dapat dibaca tanpa login (HTTP 200).
-- [ ] Unggah laporan PDF final ke Google Drive dengan akses **Anyone with the link — Viewer**.
-- [ ] Uji kedua tautan melalui Incognito tanpa login.
-- [ ] Kumpulkan kedua tautan sebelum **26 Oktober 2026 pukul 23.59 WIB**.
-
 Folder ini memiliki repositori Git sendiri yang terhubung ke `https://github.com/aryapulosari-design/UTS-Mobile-Praktikum.git`. Source code UTS dikelola terpisah dari tugas di direktori induk. Folder `build/`, `.dart_tool/`, `.idea/`, serta berkas lokal Android diabaikan Git. `pubspec.lock` disertakan karena ini proyek aplikasi.
 
 ## Referensi
