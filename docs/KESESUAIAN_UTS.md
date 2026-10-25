@@ -27,7 +27,7 @@ Acuan: UJIAN TENGAH SEMESTER (UTS), Matakuliah Pemrograman Mobile, Senin 19 Okto
 | BAB II 2.3 | URL/jenis data, HTTP, JSON/model, async, penyajian dan status UI; potongan kode disertai penjelasan | Tersedia |
 | BAB III 3.1–3.2 | Kesimpulan pengembangan/pengujian dan saran | Tersedia |
 | Daftar pustaka | Dokumentasi Flutter, Dart, HTTP, Shared Preferences dan API | Tersedia |
-| B.4 Laporan PDF | `docs/Laporan_UTS_LangitKita.pdf`, sumber edit `docs/laporan.html` | Tersedia; cover perlu dilengkapi |
+| B.4 Laporan PDF | Sumber edit `docs/laporan.html`; PDF ekspor disimpan lokal dan tidak diunggah ke GitHub | PDF perlu diekspor setelah cover dilengkapi |
 | B.4 Google Drive Anyone with the link, Viewer | Belum diunggah ke Drive | Belum selesai |
 | B.5 Dua tautan tanpa login | GitHub sudah terverifikasi publik tanpa login; tautan Drive belum tersedia | Perlu menyelesaikan Drive dan pemeriksaan akhir kedua tautan |
 

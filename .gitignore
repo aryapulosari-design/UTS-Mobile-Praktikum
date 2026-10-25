@@ -32,6 +32,7 @@ migrate_working_dir/
 .pub/
 /build/
 /coverage/
+/docs/Laporan_UTS_LangitKita.pdf
 
 # Symbolication related
 app.*.symbols

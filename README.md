@@ -144,7 +144,6 @@ uts mobile praktikum/
 ├── test/                             # 34 pengujian deterministik
 ├── docs/
 │   ├── laporan.html                  # Sumber laporan yang dapat diedit
-│   ├── Laporan_UTS_LangitKita.pdf     # Ekspor laporan; lengkapi cover
 │   └── screenshots/                  # Bukti tampilan browser asli
 ├── tools/                            # Preview dan pembuatan dokumentasi
 ├── android/ ios/ web/ windows/ linux/ macos/
@@ -294,7 +293,7 @@ Screenshot diambil dari aplikasi Flutter web pada viewport ponsel 430 × 932. Lo
 | 7 | [Prakiraan per jam](docs/screenshots/07-per-jam.png) | Data 24 jam dengan ikon siang/malam |
 | 8 | [Detail harian](docs/screenshots/08-detail-harian.png) | UV, total hujan, angin, matahari terbit/terbenam |
 
-[Laporan PDF](docs/Laporan_UTS_LangitKita.pdf) dan [sumber HTML laporan](docs/laporan.html) tersedia di `docs/`. Struktur: cover, BAB I Pendahuluan, BAB II Pembahasan, BAB III Penutup, dan daftar pustaka. Nama, NIM, serta jurusan telah diisi. **Nama perguruan tinggi dan logo fakultas masih perlu dilengkapi pada cover.** Setelah mengedit, ekspor ulang PDF dari browser dengan ukuran A4 dan Background graphics aktif.
+[Sumber HTML laporan](docs/laporan.html) tersedia di `docs/`. Struktur: cover, BAB I Pendahuluan, BAB II Pembahasan, BAB III Penutup, dan daftar pustaka. Nama, NIM, serta jurusan telah diisi. **Nama perguruan tinggi dan logo fakultas masih perlu dilengkapi pada cover.** PDF hasil ekspor tidak disimpan di GitHub; setelah mengedit, ekspor PDF dari browser dengan ukuran A4 dan Background graphics aktif.
 
 Untuk membuat ulang screenshot dan PDF secara otomatis pada Windows (Chrome dan Node.js 22+, internet aktif):
 
@@ -303,7 +302,7 @@ flutter build web --release
 node tools/capture_documentation.mjs
 ```
 
-`CHROME_PATH` dapat diatur ke lokasi executable Chrome lain. Skrip menyimpan profil sementara di `build/`, yang diabaikan Git. PDF hasil ekspor tetap perlu diperiksa sebelum dikumpulkan.
+`CHROME_PATH` dapat diatur ke lokasi executable Chrome lain. Skrip menyimpan profil sementara di `build/`, yang diabaikan Git. PDF hasil ekspor lokal tetap perlu diperiksa sebelum dikumpulkan dan sengaja diabaikan Git.
 
 ## Kesesuaian dengan tugas
 
@@ -320,7 +319,7 @@ Pemeriksaan mengacu pada naskah asli **UJIAN TENGAH SEMESTER (UTS), Pemrograman 
 | Struktur rapi | Model, service, screen, widget, utility, test, docs |
 | Pengujian sistematis | 34 tes serta panduan pemeriksaan manual |
 | README | Identitas, fitur, API, teknologi, cara menjalankan, pengujian |
-| Laporan PDF | `docs/Laporan_UTS_LangitKita.pdf`, cover perlu dilengkapi |
+| Laporan | Sumber `docs/laporan.html`; PDF ekspor dibuat dan disimpan lokal, tidak diunggah ke GitHub |
 | GitHub Public | Sudah diunggah ke [UTS-Mobile-Praktikum](https://github.com/aryapulosari-design/UTS-Mobile-Praktikum); README publik terverifikasi HTTP 200 tanpa login |
 | Google Drive Viewer | Laporan belum diunggah ke Google Drive |
 
